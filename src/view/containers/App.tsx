@@ -1,11 +1,8 @@
 import React from 'react';
+import { TaskBoard } from '../containers/task-board';
 
 function App() {
-  return (
-    <div className="App">
-      hello world
-    </div>
-  );
+    return <TaskBoard /> // TODO: возможно нужно удалить <App />?
 }
 
 export default App;

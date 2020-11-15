@@ -1,5 +1,5 @@
-import { TasksState } from "./tasks/reducer";
+import { TaskState } from "./tasks/reducer";
 
 export type StoreState = {
-    tasks: TasksState;
+    tasks: TaskState;
 }

@@ -7,7 +7,7 @@ import App from './view/containers/App';
 
 import rootReducer from './redux/reducer';
 
-import './main.css';
+import './main.scss';
 
 const store = createStore(
     rootReducer,
