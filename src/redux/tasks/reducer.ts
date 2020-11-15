@@ -1,14 +1,14 @@
 import { TASKS } from "../../constants/tasks";
 import { Task } from "../../types/tasks";
 
-export type TasksState = {
+export type TaskState = {
     list: Array<Task>;
 }
 
-const initialState: TasksState = {
+const initialState: TaskState = {
     list: TASKS,
 }
 
-export default function tasksReducer(state = initialState): TasksState {
+export default function taskReducer(state = initialState): TaskState {
     return state;
 }

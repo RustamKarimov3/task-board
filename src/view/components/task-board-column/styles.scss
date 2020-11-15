@@ -1,0 +1,8 @@
+@import '../../../vars.scss';
+
+.task-board-column {
+    padding: $gap-xs;
+    width: 100%;
+    min-width: 200px;
+    border: 1px solid black;
+}
