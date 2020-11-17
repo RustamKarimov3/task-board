@@ -11,13 +11,16 @@ export enum TaskImportanceCoefficient {
     Must = 2,
 }
 
-export type Task = {
+export type AssigneeInfo = {
+    id: string;
+    firstName: string;
+    lastName: string;
+}
+
+export type TaskInfo = {
     id: string;
     taskName: string;
-    employee: {
-        firstName: string;
-        lastName: string;
-    }
+    assignee: AssigneeInfo;
     status: TaskStatus;
     importance: TaskImportanceCoefficient;
 }

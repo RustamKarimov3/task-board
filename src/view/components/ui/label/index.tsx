@@ -10,7 +10,7 @@ type Props = {
     className?: string;
 }
 
-export const Label: React.FC<Props> = ({ size = 's', text, isBold = false, className}) => {
+const Label: React.FC<Props> = ({ size = 's', text, isBold = false, className}) => {
     const cn = useMemo(
         () => createCn('label', className),
         [className]
@@ -22,3 +22,5 @@ export const Label: React.FC<Props> = ({ size = 's', text, isBold = false, class
         </span>
     );
 };
+
+export default React.memo(Label);
