@@ -1,9 +1,4 @@
-export enum TaskStatus {
-    Plan = 'PLAN',
-    In_progress = 'IN_PROGRESS',
-    Testing = 'TESTING',
-    Done = 'DONE',
-}
+export type TaskStatus = 'plan' | 'inProgress' | 'testing' | 'done';
 
 export enum TaskImportanceCoefficient {
     Could = 0,

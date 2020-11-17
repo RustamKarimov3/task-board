@@ -4,11 +4,17 @@ import { createCn } from 'bem-react-classname';
 import TaskBoardColumn from '../../components/task-board-column';
 import TaskFullInfoPane from '../../components/task-full-info-pane';
 
-import { ChosenTaskInfoContext } from '../../contexts/task-context';
+import { ChosenTaskInfoContext } from '../../contexts/chosen-task-info-context';
 
 import { TaskStatus } from '../../../types/tasks';
 
+import { TaskStatuses } from '../../../constants/tasks';
+
 import './styles.scss';
+
+const taskStatusesAsArray = Object.keys(TaskStatuses);
+
+const renderTaskBoardColumn = (taskStatus: TaskStatus) => <TaskBoardColumn status={ taskStatus } />;
 
 const cn = createCn('task-board');
 
@@ -20,15 +26,11 @@ const TaskBoard: React.FC = () => {
         [setChosenTaskInfo],
     );
 
-    // TODO: не забыть поменять имена для колонок согласно статусам
     return (
         <div className={ cn() }>
                 <div className={ cn('columns-wrapper') }>
                     <div className={ cn('columns') }>
-                        <TaskBoardColumn title="Первый пашел" status={ TaskStatus.Plan } />
-                        <TaskBoardColumn title="Первый пашел" status={ TaskStatus.In_progress } />
-                        <TaskBoardColumn title="Первый пашел" status={ TaskStatus.Testing } />
-                        <TaskBoardColumn title="Первый пашел" status={ TaskStatus.Done } />
+                        { taskStatusesAsArray.map(renderTaskBoardColumn) }
                     </div>
                 </div>
             { chosenTaskInfo && (

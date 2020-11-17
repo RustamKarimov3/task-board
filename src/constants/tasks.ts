@@ -1,5 +1,18 @@
 import { TaskInfo, TaskImportanceCoefficient, TaskStatus } from "../types/tasks";
 
+export const TaskStatusDictionary: Record<TaskStatus, string> = {
+    plan: 'PLANNED',
+    inProgress: 'IN PROGRESS',
+    testing: 'TESTING',
+    done: 'DONE',
+} as const;
+
+export const TaskStatuses: Record<TaskStatus, TaskStatus> = {
+    plan: 'plan',
+    inProgress: 'inProgress',
+    testing: 'testing',
+    done: 'done',
+} as const;
 
 export const TASKS: Array<TaskInfo> = [
     {
@@ -10,7 +23,7 @@ export const TASKS: Array<TaskInfo> = [
             firstName: 'Вася',
             lastName: 'Пупкин'
         },
-        status: TaskStatus.Plan,
+        status: TaskStatuses.plan,
         importance: TaskImportanceCoefficient.Must,
     },
     {
@@ -21,7 +34,7 @@ export const TASKS: Array<TaskInfo> = [
             firstName: 'Вася',
             lastName: 'Пупкин'
         },
-        status: TaskStatus.Plan,
+        status: TaskStatuses.plan,
         importance: TaskImportanceCoefficient.Should,
     },
     {
@@ -32,7 +45,7 @@ export const TASKS: Array<TaskInfo> = [
             firstName: 'Вася',
             lastName: 'Пупкин'
         },
-        status: TaskStatus.Plan,
+        status: TaskStatuses.plan,
         importance: TaskImportanceCoefficient.Could,
     },
     {
@@ -43,7 +56,7 @@ export const TASKS: Array<TaskInfo> = [
             firstName: 'Петя',
             lastName: 'Камушкин'
         },
-        status: TaskStatus.Done,
+        status: TaskStatuses.done,
         importance: TaskImportanceCoefficient.Must,
     }
 ];

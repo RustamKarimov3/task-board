@@ -7,7 +7,7 @@ import { TaskInfo } from '../../../types/tasks';
 
 import { sortTasksByImportance } from '../../../utils/tasks';
 
-import { ChosenTaskInfoContext } from '../../contexts/task-context';
+import { ChosenTaskInfoContext } from '../../contexts/chosen-task-info-context';
 
 import './styles.scss';
 

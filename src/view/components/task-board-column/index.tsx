@@ -8,20 +8,20 @@ import Label from '../ui/label';
 import { TaskStatus } from '../../../types/tasks';
 import { StoreState } from '../../../redux/store-type';
 
+import { TaskStatusDictionary } from '../../../constants/tasks';
+
 import { makeTasksByStatusSelector } from '../../../redux/tasks/selectors';
 
 import { groupTasksByAssigneeId } from '../../../utils/tasks';
 
+
 import './styles.scss';
 
-type Props = {
-    title: string;
-    status: TaskStatus;
-}
+type Props = { status: TaskStatus };
 
 const cn = createCn('task-board-column');
 
-const TaskBoardColumn: React.FC<Props> = ({ title, status }) => {
+const TaskBoardColumn: React.FC<Props> = ({ status }) => {
     const selectTasksByStatus = useMemo(makeTasksByStatusSelector, []);
     const memoizedTasksByStatusSelector = useCallback(
         (state: StoreState) => selectTasksByStatus(state, status),
@@ -39,7 +39,7 @@ const TaskBoardColumn: React.FC<Props> = ({ title, status }) => {
 
     return (
         <div className={ cn() }>
-            <Label isBold={ true } text={ title } size='l' />
+            <Label isBold={ true } text={ TaskStatusDictionary[status] } size='l' />
             <div>
                 { Object.keys(tasksGroupedByAssigneeId).map(renderTaskGroup) }
             </div>
