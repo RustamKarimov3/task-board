@@ -1,15 +1,8 @@
 import React from 'react';
-
 import TaskBoard from '../containers/task-board';
 
-import { ChosenTaskInfoProvider } from '../contexts/task-context';
-
 function App() {
-    return (
-        <ChosenTaskInfoProvider>
-            <TaskBoard />
-        </ChosenTaskInfoProvider>
-    );
+    return <TaskBoard /> // TODO: тут еще будет панелька с полным описанием задачи
 }
 
 export default App;
