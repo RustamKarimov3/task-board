@@ -1,0 +1,9 @@
+@import '../../../../vars.scss';
+
+.task {
+    padding: $gap-2xs;
+    width: 100%;
+    height: 200px;
+    cursor: pointer;
+    border: 1px solid black;
+}

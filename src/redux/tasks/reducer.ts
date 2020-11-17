@@ -1,12 +1,12 @@
 import { TASKS } from "../../constants/tasks";
-import { Task } from "../../types/tasks";
+import { TaskInfo } from "../../types/tasks";
 
 export type TaskState = {
-    list: Array<Task>;
+    tasklist: Array<TaskInfo>;
 }
 
 const initialState: TaskState = {
-    list: TASKS,
+    tasklist: TASKS,
 }
 
 export default function taskReducer(state = initialState): TaskState {

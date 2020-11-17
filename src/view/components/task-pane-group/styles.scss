@@ -1,0 +1,7 @@
+@import '../../../vars.scss';
+
+.task-group {
+    &__task {
+        margin: $gap-2xs 0;
+    }
+}
