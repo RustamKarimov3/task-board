@@ -1,15 +1,5 @@
 .task-board {
     display: flex;
-    flex-direction: column;
+    align-content: stretch;
     height: 100%;
-
-    &__columns-wrapper {
-        flex: 1;
-        overflow: scroll;
-    }
-
-    &__columns {
-        display: flex;
-        min-height: 100%;
-    }
 }

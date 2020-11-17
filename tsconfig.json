@@ -18,8 +18,7 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react",
-    "strictNullChecks": false, // TODO: включить
+    "jsx": "react"
   },
   "include": [
     "src"
