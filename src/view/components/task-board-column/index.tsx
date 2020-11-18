@@ -10,7 +10,7 @@ import { StoreState } from '../../../redux/store-type';
 
 import { TaskStatusDictionary } from '../../../constants/tasks';
 
-import { makeTasksByStatusSelector } from '../../../redux/tasks/selectors';
+import { makeTasksByStatusSelector } from '../../../redux/taskList/selectors';
 
 import { groupTasksByAssigneeId } from '../../../utils/tasks';
 
@@ -32,16 +32,18 @@ const TaskBoardColumn: React.FC<Props> = ({ status }) => {
 
     const tasksGroupedByAssigneeId = useMemo(() => groupTasksByAssigneeId(tasksByStatus), [tasksByStatus]);
 
-    const renderTaskGroup = useCallback(
+    const renderTaskGroupByAssignId = useCallback(
         (assigneeId: string) => <TaskPaneGroup taskGroup={ tasksGroupedByAssigneeId[assigneeId] } key={assigneeId} />,
         [tasksGroupedByAssigneeId]
     );
+
+    const assigneeIds = useMemo(() => Object.keys(tasksGroupedByAssigneeId), [tasksGroupedByAssigneeId])
 
     return (
         <div className={ cn() }>
             <Label isBold={ true } text={ TaskStatusDictionary[status] } size='l' />
             <div>
-                { Object.keys(tasksGroupedByAssigneeId).map(renderTaskGroup) }
+                { assigneeIds.map(renderTaskGroupByAssignId) }
             </div>
         </div>
     );

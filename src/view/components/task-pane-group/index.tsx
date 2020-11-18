@@ -1,4 +1,5 @@
-import React, { useCallback, useContext, useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { createCn } from 'bem-react-classname';
 
 import TaskPane from '../ui/task-pane';
@@ -7,7 +8,8 @@ import { TaskInfo } from '../../../types/tasks';
 
 import { sortTasksByImportance } from '../../../utils/tasks';
 
-import { ChosenTaskInfoContext } from '../../contexts/chosen-task-info-context';
+import { selectChosenTaskInfo } from '../../../redux/chosenTaskInfo/selectors';
+import { setChosenTaskInfo } from '../../../redux/chosenTaskInfo/action-creators';
 
 import './styles.scss';
 
@@ -18,12 +20,19 @@ type Props = {
 const cn = createCn('task-pane-group');
 
 const TaskPaneGroup: React.FC<Props> = ({ taskGroup }) => {
+    const dispatch = useDispatch();
+    const chosenTaskInfo = useSelector(selectChosenTaskInfo);
+
     const tasksSortedByImportance = useMemo(
         () => sortTasksByImportance(taskGroup),
         [taskGroup]
-        );
+    );
 
-    const { chosenTaskInfo , setChosenTaskInfo } = useContext(ChosenTaskInfoContext);
+    const handleTaskPaneClick = useCallback(
+        (taskInfo) => dispatch(setChosenTaskInfo(taskInfo)),
+        [dispatch]
+    )
+
 
     const renderTask = useCallback(
         (taskInfo: TaskInfo) => (
@@ -31,11 +40,11 @@ const TaskPaneGroup: React.FC<Props> = ({ taskGroup }) => {
                 className={ cn('task') }
                 taskInfo={ taskInfo }
                 key={ taskInfo.id }
-                isChosen={ taskInfo.id === chosenTaskInfo?.id } // TODO: пофиксить сhaining
-                onClick={ setChosenTaskInfo }
+                isChosen={ taskInfo.id === chosenTaskInfo?.id }
+                onClick={ handleTaskPaneClick }
             />
         ),
-        [chosenTaskInfo, setChosenTaskInfo]
+        [chosenTaskInfo, handleTaskPaneClick]
     );
 
 

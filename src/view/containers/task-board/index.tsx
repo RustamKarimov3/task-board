@@ -1,14 +1,16 @@
-import React, { useCallback, useContext } from 'react';
+import React, { useCallback } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { createCn } from 'bem-react-classname';
 
 import TaskBoardColumn from '../../components/task-board-column';
 import TaskFullInfoPane from '../../components/task-full-info-pane';
 
-import { ChosenTaskInfoContext } from '../../contexts/chosen-task-info-context';
-
 import { TaskStatus } from '../../../types/tasks';
 
 import { TaskStatuses } from '../../../constants/tasks';
+
+import { selectChosenTaskInfo } from '../../../redux/chosenTaskInfo/selectors';
+import { deleteChosenTaskInfo } from '../../../redux/chosenTaskInfo/action-creators';
 
 import './styles.scss';
 
@@ -19,11 +21,12 @@ const renderTaskBoardColumn = (taskStatus: TaskStatus) => <TaskBoardColumn statu
 const cn = createCn('task-board');
 
 const TaskBoard: React.FC = () => {
-    const { chosenTaskInfo, setChosenTaskInfo } = useContext(ChosenTaskInfoContext);
+    const dispatch = useDispatch();
+    const chosenTaskInfo = useSelector(selectChosenTaskInfo)
 
     const handleFullTaskInfoPaneClose = useCallback(
-        () => setChosenTaskInfo(null),
-        [setChosenTaskInfo],
+        () => dispatch(deleteChosenTaskInfo()),
+        [dispatch],
     );
 
     return (

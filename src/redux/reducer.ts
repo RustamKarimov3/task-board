@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
 
-import taskReducer from './tasks/reducer';
+import taskListReducer from './taskList/reducer';
+import chosenTaskInfoReducer from './chosenTaskInfo/reducer';
 import { StoreState } from './store-type';
 
-export default combineReducers<StoreState>({ // TODO: возможно combineReducers мне не нужен и можно будет его удалить
-    tasks: taskReducer,
+export default combineReducers<StoreState>({
+    taskList: taskListReducer,
+    chosenTaskInfo: chosenTaskInfoReducer,
 });
