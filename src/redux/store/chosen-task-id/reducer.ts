@@ -15,7 +15,7 @@ export default function chosenTaskIdReducer(state = initialState, action: Action
         case (ChosenTaskIdActionTypes.SET_ID):
             return action.taskId;
         case (ChosenTaskIdActionTypes.RESET_ID):
-            return null;
+            return '';
         default:
             return state;
     }

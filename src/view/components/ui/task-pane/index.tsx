@@ -22,7 +22,7 @@ type Props = {
     className?: string;
 }
 
-const TaskPane: React.FC<Props> = ({ taskInfo, isChosen, onClick, className }) => {
+const TaskPane: React.FC<Props> = ({ taskInfo, isChosen = false, onClick, className }) => {
     const dispatch = useDispatch();
     const cn = useMemo(() => createCn('task', className), [className]);
 
@@ -33,20 +33,23 @@ const TaskPane: React.FC<Props> = ({ taskInfo, isChosen, onClick, className }) =
         [dispatch],
     )
 
-    const [, drag] = useDrag<DragObjectWithType & Partial<TaskInfo>, {}, {}>({
+    const [, drag] = useDrag<DragObjectWithType & Pick<TaskInfo, 'id'| 'status'>, {}, {}>({
         item: {
             type: ItemTypes.TASK,
             id: taskInfo.id,
             status: taskInfo.status,
         },
-        end: ({ id }, monitor) => {
-            if (!monitor.getDropResult()?.status) {
+        end: (draggedItem, monitor) => {
+            const draggedItemId: string = draggedItem?.id || '';
+            const shouldPreventDragEnd: boolean = !draggedItemId || !monitor.getDropResult()?.status;
+
+            if (shouldPreventDragEnd) {
                 return;
             }
 
             const newTaskStatus = monitor.getDropResult().status;
 
-            monitor.didDrop() && handleTaskDragEnd(id, newTaskStatus)
+            handleTaskDragEnd(draggedItemId, newTaskStatus)
         },
       });
 
