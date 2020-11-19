@@ -7,6 +7,7 @@ import Label from '../label';
 
 import { TaskInfo } from '../../../../types/tasks';
 
+import { TaskImportanceNameByCoefficient } from '../../../../constants/tasks';
 import { ItemTypes } from '../../../../constants/dnd-items';
 
 import { updateTaskStatus } from '../../../../redux/store/taskList/action-creators';
@@ -55,8 +56,16 @@ const TaskPane: React.FC<Props> = ({ taskInfo, isChosen, onClick, className }) =
     )
 
     return (
-        <div className={ cn({ chosen: isChosen }) } ref={ drag } onClick={ handleClick }>
-            <Label isBold={ true } text={ taskInfo.taskName } />
+        <div
+            className={ cn({
+                chosen: isChosen,
+                importance: TaskImportanceNameByCoefficient[taskInfo.importance]
+            }) }
+            ref={ drag }
+            onClick={ handleClick }
+        >
+            <Label className={ cn('label') } isBold={ true } text={ taskInfo.id } />
+            <Label className={ cn('label') } text={ taskInfo.taskName } />
         </div>
     );
 }

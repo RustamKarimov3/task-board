@@ -9,7 +9,8 @@ import Label from '../ui/label';
 import { TaskInfo, TaskStatus } from '../../../types/tasks';
 import { StoreState } from '../../../redux/store-type';
 
-import { TaskStatusDictionary } from '../../../constants/tasks';
+import { TaskStatusTitles } from '../../../constants/tasks';
+import { ItemTypes } from '../../../constants/dnd-items';
 
 import { makeTasksByStatusSelector } from '../../../redux/store/taskList/selectors';
 
@@ -17,13 +18,15 @@ import { groupTasksByAssigneeId } from '../../../utils/tasks';
 
 
 import './styles.scss';
-import { ItemTypes } from '../../../constants/dnd-items';
 
-type Props = { status: TaskStatus };
+type Props = {
+    status: TaskStatus;
+    className?: string;
+};
 
-const cn = createCn('task-board-column');
 
-const TaskBoardColumn: React.FC<Props> = ({ status }) => {
+const TaskBoardColumn: React.FC<Props> = ({ status, className }) => {
+    const cn = useMemo(() => createCn('task-board-column', className), [className]);
     const selectTasksByStatus = useMemo(makeTasksByStatusSelector, []);
     const memoizedTasksByStatusSelector = useCallback(
         (state: StoreState) => selectTasksByStatus(state, status),
@@ -43,7 +46,7 @@ const TaskBoardColumn: React.FC<Props> = ({ status }) => {
     const tasksGroupedByAssigneeId = useMemo(() => groupTasksByAssigneeId(tasksByStatus), [tasksByStatus]);
 
     const renderTaskGroupByAssignId = useCallback(
-        (assigneeId: string) => <TaskPaneGroup taskGroup={ tasksGroupedByAssigneeId[assigneeId] } key={assigneeId} />,
+        (assigneeId: string) => tasksGroupedByAssigneeId[assigneeId] && <TaskPaneGroup taskGroup={ tasksGroupedByAssigneeId[assigneeId] } key={assigneeId} />,
         [tasksGroupedByAssigneeId]
     );
 
@@ -51,7 +54,12 @@ const TaskBoardColumn: React.FC<Props> = ({ status }) => {
 
     return (
         <div className={ cn() } ref={ drop }>
-            <Label isBold={ true } text={ TaskStatusDictionary[status] } size='l' />
+            <Label
+                className={ cn('title') }
+                isBold={ true }
+                size='m'
+                text={ TaskStatusTitles[status] }
+            />
             <div>
                 { assigneeIds.map(renderTaskGroupByAssignId) }
             </div>
