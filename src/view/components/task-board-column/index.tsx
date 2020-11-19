@@ -35,12 +35,19 @@ const TaskBoardColumn: React.FC<Props> = ({ status, className }) => {
 
     const tasksByStatus = useSelector(memoizedTasksByStatusSelector);
 
-    const [, drop] = useDrop<DragObjectWithType, Pick<TaskInfo, 'status'>, {}>({
+    const [{ highlited }, drop] = useDrop<
+        DragObjectWithType,
+        Pick<TaskInfo, 'status'>,
+        { highlited: boolean }
+    >({
         accept: ItemTypes.TASK,
         canDrop: (_, monitor) => {
             return monitor.getItem()?.status !== status
         },
         drop: () => ({ status }),
+        collect: (monitor) => ({
+            highlited: monitor.canDrop(),
+        })
       });
 
     const tasksGroupedByAssigneeId = useMemo(() => groupTasksByAssigneeId(tasksByStatus), [tasksByStatus]);
@@ -53,13 +60,14 @@ const TaskBoardColumn: React.FC<Props> = ({ status, className }) => {
     const assigneeIds = useMemo(() => Object.keys(tasksGroupedByAssigneeId), [tasksGroupedByAssigneeId])
 
     return (
-        <div className={ cn() } ref={ drop }>
+        <div className={ cn({ highlited }) } ref={ drop }>
             <Label
                 className={ cn('title') }
                 isBold={ true }
                 size='m'
-                text={ TaskStatusTitles[status] }
-            />
+            >
+                { TaskStatusTitles[status] }
+            </Label>
             <div>
                 { assigneeIds.map(renderTaskGroupByAssignId) }
             </div>

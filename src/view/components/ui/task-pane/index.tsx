@@ -67,8 +67,8 @@ const TaskPane: React.FC<Props> = ({ taskInfo, isChosen = false, onClick, classN
             ref={ drag }
             onClick={ handleClick }
         >
-            <Label className={ cn('label') } isBold={ true } text={ taskInfo.id } />
-            <Label className={ cn('label') } text={ taskInfo.taskName } />
+            <Label className={ cn('label') } isBold={ true }>{ taskInfo.id }</Label>
+            <Label className={ cn('label') }>{ taskInfo.taskName }</Label>
         </div>
     );
 }

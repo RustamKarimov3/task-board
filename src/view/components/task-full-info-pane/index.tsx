@@ -1,9 +1,13 @@
 import React, { useMemo } from 'react';
 import { createCn } from 'bem-react-classname';
 
-import Label from '../ui/label';
+import { VscChromeClose } from 'react-icons/vsc';
+
+import TaskInfoField from '../ui/task-info-field';
 
 import { TaskInfo } from '../../../types/tasks';
+
+import { TaskImportanceNameByCoefficient, TaskStatusTitles } from '../../../constants/tasks';
 
 import './styles.scss';
 
@@ -18,10 +22,15 @@ const TaskFullInfoPane: React.FC<Props> = ({ taskInfo, onCloseButtonClick, class
 
     return (
         <div className={ cn() }>
-            <button onClick={ onCloseButtonClick }>close</button>
-            <Label isBold={ true } text={ taskInfo?.taskName } />
-            <Label isBold={ true } text={ taskInfo?.id } />
-            <Label isBold={ true } text={ taskInfo?.assignee?.firstName } />
+            <VscChromeClose onClick={onCloseButtonClick} cursor='pointer' className={ cn('icon') } />
+            <div className={ cn('task-info') }>
+                <TaskInfoField fieldName='Task-name' fieldValue={ taskInfo?.taskName } />
+                <TaskInfoField fieldName='Task-id' fieldValue={ taskInfo?.id } />
+                <TaskInfoField fieldName='Assignee' fieldValue={ `${taskInfo?.assignee.lastName} ${taskInfo?.assignee.firstName}` } />
+                <TaskInfoField fieldName='Importance' fieldValue={ TaskImportanceNameByCoefficient[taskInfo?.importance] } />
+                <TaskInfoField fieldName='Status' fieldValue={ TaskStatusTitles[taskInfo?.status] } />
+                <TaskInfoField fieldName='Date' fieldValue={ 'дата' } />
+            </div>
         </div>
     );
 }

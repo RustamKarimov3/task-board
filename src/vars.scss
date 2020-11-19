@@ -8,13 +8,20 @@ $gap-s: 12px;
 $gap-m: 16px;
 $gap-l: 20px;
 $gap-xl: 24px;
+$gap-2xl: 32px;
+$gap-3xl: 40px;
+$gap-4xl: 48px;
+$gap-5xl: 72px;
 
-$color-blue-dark: rgb(45,64,89);
-$color-red: rgb(234,84,85);
-$color-yellow: rgb(255,180,0);
-$color-green: rgb(223,240,234);
-$color-cream: rgb(246,246,246);
-$color-blue-accent: rgba(234,245,255, 1);
+$background-main-dark: rgb(45, 64, 89);
+$background-main-light: rgb(246, 246, 246);
+
+$background-alert: rgb(234, 84, 85);
+$background-warning: rgb(255, 180, 0);
+$background-info: rgba(81, 198, 178, 0.7);
+$background-info-light: rgb(102, 228, 142);
+
+$font-color-minor: rgba(0, 0, 0, 0.5);
 
 $border-radius: 4px;
 

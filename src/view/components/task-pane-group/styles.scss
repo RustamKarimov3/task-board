@@ -3,9 +3,5 @@
 .task-pane-group {
     &__task {
         margin-bottom: $gap-s;
-
-        &:last-of-type {
-            margin-bottom: 0;
-        }
     }
 }
