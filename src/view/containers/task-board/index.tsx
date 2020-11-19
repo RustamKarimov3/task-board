@@ -9,14 +9,15 @@ import { TaskStatus } from '../../../types/tasks';
 
 import { TaskStatuses } from '../../../constants/tasks';
 
-import { selectChosenTaskInfo } from '../../../redux/chosenTaskInfo/selectors';
-import { deleteChosenTaskInfo } from '../../../redux/chosenTaskInfo/action-creators';
+import { selectChosenTaskInfo } from '../../../redux/common-selectors';
+import { resetChosenTaskId } from '../../../redux/store/chosen-task-id/action-creators';
+
 
 import './styles.scss';
 
 const taskStatusesAsArray = Object.keys(TaskStatuses);
 
-const renderTaskBoardColumn = (taskStatus: TaskStatus) => <TaskBoardColumn status={ taskStatus } />;
+const renderTaskBoardColumn = (taskStatus: TaskStatus) => <TaskBoardColumn status={ taskStatus } key={ taskStatus } />;
 
 const cn = createCn('task-board');
 
@@ -25,7 +26,7 @@ const TaskBoard: React.FC = () => {
     const chosenTaskInfo = useSelector(selectChosenTaskInfo)
 
     const handleFullTaskInfoPaneClose = useCallback(
-        () => dispatch(deleteChosenTaskInfo()),
+        () => dispatch(resetChosenTaskId()),
         [dispatch],
     );
 

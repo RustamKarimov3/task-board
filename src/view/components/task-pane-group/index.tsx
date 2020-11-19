@@ -8,8 +8,8 @@ import { TaskInfo } from '../../../types/tasks';
 
 import { sortTasksByImportance } from '../../../utils/tasks';
 
-import { selectChosenTaskInfo } from '../../../redux/chosenTaskInfo/selectors';
-import { setChosenTaskInfo } from '../../../redux/chosenTaskInfo/action-creators';
+import { selectChosenTaskId } from '../../../redux/store/chosen-task-id/selectors';
+import { setChosenTaskId } from '../../../redux/store/chosen-task-id/action-creators';
 
 import './styles.scss';
 
@@ -21,7 +21,7 @@ const cn = createCn('task-pane-group');
 
 const TaskPaneGroup: React.FC<Props> = ({ taskGroup }) => {
     const dispatch = useDispatch();
-    const chosenTaskInfo = useSelector(selectChosenTaskInfo);
+    const chosenTaskId = useSelector(selectChosenTaskId);
 
     const tasksSortedByImportance = useMemo(
         () => sortTasksByImportance(taskGroup),
@@ -29,7 +29,7 @@ const TaskPaneGroup: React.FC<Props> = ({ taskGroup }) => {
     );
 
     const handleTaskPaneClick = useCallback(
-        (taskInfo) => dispatch(setChosenTaskInfo(taskInfo)),
+        (taskId: TaskInfo['id']) => dispatch(setChosenTaskId(taskId)),
         [dispatch]
     )
 
@@ -40,11 +40,11 @@ const TaskPaneGroup: React.FC<Props> = ({ taskGroup }) => {
                 className={ cn('task') }
                 taskInfo={ taskInfo }
                 key={ taskInfo.id }
-                isChosen={ taskInfo.id === chosenTaskInfo?.id }
+                isChosen={ taskInfo.id === chosenTaskId }
                 onClick={ handleTaskPaneClick }
             />
         ),
-        [chosenTaskInfo, handleTaskPaneClick]
+        [chosenTaskId, handleTaskPaneClick]
     );
 
 

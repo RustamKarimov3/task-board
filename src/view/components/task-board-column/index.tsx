@@ -1,21 +1,23 @@
 import React, { useCallback, useMemo } from 'react';
+import { DragObjectWithType, useDrop } from 'react-dnd';
 import { useSelector } from 'react-redux';
 import { createCn } from 'bem-react-classname';
 
 import TaskPaneGroup from '../task-pane-group';
 import Label from '../ui/label';
 
-import { TaskStatus } from '../../../types/tasks';
+import { TaskInfo, TaskStatus } from '../../../types/tasks';
 import { StoreState } from '../../../redux/store-type';
 
 import { TaskStatusDictionary } from '../../../constants/tasks';
 
-import { makeTasksByStatusSelector } from '../../../redux/taskList/selectors';
+import { makeTasksByStatusSelector } from '../../../redux/store/taskList/selectors';
 
 import { groupTasksByAssigneeId } from '../../../utils/tasks';
 
 
 import './styles.scss';
+import { ItemTypes } from '../../../constants/dnd-items';
 
 type Props = { status: TaskStatus };
 
@@ -30,6 +32,14 @@ const TaskBoardColumn: React.FC<Props> = ({ status }) => {
 
     const tasksByStatus = useSelector(memoizedTasksByStatusSelector);
 
+    const [, drop] = useDrop<DragObjectWithType, Pick<TaskInfo, 'status'>, {}>({
+        accept: ItemTypes.TASK,
+        canDrop: (_, monitor) => {
+            return monitor.getItem()?.status !== status
+        },
+        drop: () => ({ status }),
+      });
+
     const tasksGroupedByAssigneeId = useMemo(() => groupTasksByAssigneeId(tasksByStatus), [tasksByStatus]);
 
     const renderTaskGroupByAssignId = useCallback(
@@ -40,7 +50,7 @@ const TaskBoardColumn: React.FC<Props> = ({ status }) => {
     const assigneeIds = useMemo(() => Object.keys(tasksGroupedByAssigneeId), [tasksGroupedByAssigneeId])
 
     return (
-        <div className={ cn() }>
+        <div className={ cn() } ref={ drop }>
             <Label isBold={ true } text={ TaskStatusDictionary[status] } size='l' />
             <div>
                 { assigneeIds.map(renderTaskGroupByAssignId) }

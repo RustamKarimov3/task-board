@@ -1,7 +1,7 @@
-import { TaskListState } from "./taskList/reducer";
-import { ChosenTaskInfoState } from "./chosenTaskInfo/reducer";
+import { TaskListState } from "./store/taskList/reducer";
+import { ChosenTaskIdState } from "./store/chosen-task-id/reducer";
 
 export type StoreState = {
     taskList: TaskListState;
-    chosenTaskInfo: ChosenTaskInfoState;
+    chosenTaskId: ChosenTaskIdState;
 };
