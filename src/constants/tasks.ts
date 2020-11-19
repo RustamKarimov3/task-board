@@ -1,62 +1,68 @@
 import { TaskInfo, TaskImportanceCoefficient, TaskStatus } from "../types/tasks";
 
-export const TaskStatusDictionary: Record<TaskStatus, string> = {
+export const TaskStatusTitles: Record<TaskStatus, string> = {
     plan: 'PLANNED',
     inProgress: 'IN PROGRESS',
     testing: 'TESTING',
     done: 'DONE',
-} as const;
+};
 
 export const TaskStatuses: Record<TaskStatus, TaskStatus> = {
     plan: 'plan',
     inProgress: 'inProgress',
     testing: 'testing',
     done: 'done',
-} as const;
+};
+
+export const TaskImportanceNameByCoefficient: Record<TaskImportanceCoefficient, string> = {
+    [TaskImportanceCoefficient.Must]: 'high',
+    [TaskImportanceCoefficient.Should]: 'middle',
+    [TaskImportanceCoefficient.Could]: 'low',
+};
 
 export const TASKS: Array<TaskInfo> = [
     {
-        id: '1',
-        taskName: 'Важная задача',
+        id: 'TSK-001',
+        taskName: 'Cоздать приложение',
         assignee: {
             id: 'id1',
             firstName: 'Вася',
             lastName: 'Пупкин'
         },
         status: TaskStatuses.plan,
-        importance: TaskImportanceCoefficient.Must,
+        importance: 0,
     },
     {
-        id: '2',
-        taskName: 'Не очень важная задача',
+        id: 'TSK-002',
+        taskName: 'Придумать дизайн',
         assignee: {
             id: 'id1',
             firstName: 'Вася',
             lastName: 'Пупкин'
         },
         status: TaskStatuses.plan,
-        importance: TaskImportanceCoefficient.Should,
+        importance: 1,
     },
     {
-        id: '3',
-        taskName: 'Неважная задача',
+        id: 'TSK-003',
+        taskName: 'Затащить react-dnd',
         assignee: {
             id: 'id1',
             firstName: 'Вася',
             lastName: 'Пупкин'
         },
         status: TaskStatuses.plan,
-        importance: TaskImportanceCoefficient.Could,
+        importance: 2,
     },
     {
-        id: '4',
-        taskName: 'Рефакторинг',
+        id: 'TSK-004',
+        taskName: 'Порефачить reducer-ы',
         assignee: {
             id: 'id2',
             firstName: 'Петя',
             lastName: 'Камушкин'
         },
         status: TaskStatuses.done,
-        importance: TaskImportanceCoefficient.Must,
+        importance: 0,
     }
 ];

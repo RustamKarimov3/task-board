@@ -1,6 +1,8 @@
 @import '../../../../vars.scss'; // TODO: узнать все-таки как сделать path-aliases в контексте cra
 
 .label {
+    display: inline-block;
+
     &_size_s {
         font-size: $font-size-s;
     }

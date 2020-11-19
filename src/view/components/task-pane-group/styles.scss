@@ -2,6 +2,10 @@
 
 .task-pane-group {
     &__task {
-        margin: $gap-2xs 0;
+        margin-bottom: $gap-s;
+
+        &:last-of-type {
+            margin-bottom: 0;
+        }
     }
 }

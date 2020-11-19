@@ -1,7 +1,12 @@
+@import '../../../vars.scss';
+
 .task-board {
     display: flex;
     flex-direction: column;
     height: 100%;
+    padding: $gap-xl;
+
+    background: $color-blue-dark;
 
     &__columns-wrapper {
         flex: 1;
@@ -11,5 +16,13 @@
     &__columns {
         display: flex;
         min-height: 100%;
+    }
+
+    &__column {
+        margin-right: $gap-m;
+
+        &:last-of-type {
+            margin-right: 0;
+        }
     }
 }

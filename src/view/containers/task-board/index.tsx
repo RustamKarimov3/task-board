@@ -17,8 +17,6 @@ import './styles.scss';
 
 const taskStatusesAsArray = Object.keys(TaskStatuses);
 
-const renderTaskBoardColumn = (taskStatus: TaskStatus) => <TaskBoardColumn status={ taskStatus } key={ taskStatus } />;
-
 const cn = createCn('task-board');
 
 const TaskBoard: React.FC = () => {
@@ -28,6 +26,11 @@ const TaskBoard: React.FC = () => {
     const handleFullTaskInfoPaneClose = useCallback(
         () => dispatch(resetChosenTaskId()),
         [dispatch],
+    );
+
+    const renderTaskBoardColumn = useCallback(
+        (taskStatus: TaskStatus) => <TaskBoardColumn className={ cn('column') } status={ taskStatus } key={ taskStatus } />,
+        [],
     );
 
     return (
