@@ -1,0 +1,12 @@
+@import '../../../../vars.scss';
+
+.task-info-field {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: $gap-m;
+
+    &__field-name {
+        margin-right: $gap-s;
+        color: $font-color-minor;
+    }
+}

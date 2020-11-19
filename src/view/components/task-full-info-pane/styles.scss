@@ -1,8 +1,44 @@
 @import '../../../vars.scss';
 
 .task-full-info-pane {
-    padding: $gap-m;
-    width: 100%;
+    position: relative;
+    padding: $gap-xl $gap-2xl;
     min-height: 250px;
-    border: 3px solid black;
+    background: $background-main-light;
+    border-radius: $border-radius;
+    border-top: 12px solid $background-main-dark;
+
+    @media (max-width: 768px) {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        border-top: unset;
+        border-radius: 0;
+        padding: $gap-5xl $gap-4xl;
+    }
+
+    &__icon {
+        position: absolute;
+        top: $gap-m;
+        right: $gap-m;
+        height: 25px;
+        width: 25px;
+
+        @media (max-width: 768px) {
+            height: 35px;
+            width: 35px;
+        }
+    }
+
+    &__task-info {
+        display: flex;
+        flex-direction: column;
+        max-width: 400px;
+
+        @media (max-width: 768px) {
+            max-width: 100%;
+        }
+    }
 }

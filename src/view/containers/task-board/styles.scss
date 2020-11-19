@@ -3,19 +3,19 @@
 .task-board {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     height: 100%;
     padding: $gap-xl;
+    background: $background-main-dark;
 
-    background: $color-blue-dark;
 
     &__columns-wrapper {
-        flex: 1;
         overflow: scroll;
     }
 
     &__columns {
         display: flex;
-        min-height: 100%;
+        align-items: flex-start;
     }
 
     &__column {

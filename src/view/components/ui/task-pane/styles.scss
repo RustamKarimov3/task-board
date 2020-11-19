@@ -7,7 +7,7 @@
     cursor: pointer;
     border: 1px solid black;
     border-radius: $border-radius;
-    background: $color-cream;
+    background: $background-info;
 
     &__label {
         width: 100%;
@@ -21,11 +21,11 @@
 
     &_importance {
         &_high {
-            background: $color-red;
+            background: $background-alert;
         }
 
         &_middle {
-            background: $color-yellow;
+            background: $background-warning;
         }
     }
 }

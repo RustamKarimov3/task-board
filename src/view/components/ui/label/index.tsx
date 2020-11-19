@@ -4,13 +4,13 @@ import { createCn } from 'bem-react-classname';
 import './styles.scss';
 
 type Props = {
-    text: string;
+    children: React.ReactNode;
     size?: 's' | 'm' | 'l';
     isBold?: boolean;
     className?: string;
 }
 
-const Label: React.FC<Props> = ({ size = 's', text, isBold = false, className}) => {
+const Label: React.FC<Props> = ({ size = 's', isBold = false, className, children }) => {
     const cn = useMemo(
         () => createCn('label', className),
         [className]
@@ -18,7 +18,7 @@ const Label: React.FC<Props> = ({ size = 's', text, isBold = false, className}) 
 
     return (
         <span className={ cn({ size, bold: isBold }) }>
-            { text }
+            { children }
         </span>
     );
 };
