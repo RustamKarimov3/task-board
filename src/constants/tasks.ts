@@ -30,7 +30,8 @@ export const TASKS: Array<TaskInfo> = [
             lastName: 'Пупкин'
         },
         status: TaskStatuses.plan,
-        importance: 0,
+        importance: TaskImportanceCoefficient.Must,
+        date: new Date(),
     },
     {
         id: 'TSK-002',
@@ -41,7 +42,8 @@ export const TASKS: Array<TaskInfo> = [
             lastName: 'Пупкин'
         },
         status: TaskStatuses.plan,
-        importance: 1,
+        importance: TaskImportanceCoefficient.Should,
+        date: new Date(),
     },
     {
         id: 'TSK-003',
@@ -52,7 +54,8 @@ export const TASKS: Array<TaskInfo> = [
             lastName: 'Пупкин'
         },
         status: TaskStatuses.plan,
-        importance: 2,
+        importance: TaskImportanceCoefficient.Could,
+        date: new Date(),
     },
     {
         id: 'TSK-004',
@@ -62,7 +65,104 @@ export const TASKS: Array<TaskInfo> = [
             firstName: 'Петя',
             lastName: 'Камушкин'
         },
+        status: TaskStatuses.inProgress,
+        importance: TaskImportanceCoefficient.Must,
+        date: new Date(),
+    },
+    {
+        id: 'TSK-005',
+        taskName: 'Порефачить reducer-ы',
+        assignee: {
+            id: 'id2',
+            firstName: 'Петя',
+            lastName: 'Камушкин'
+        },
+        status: TaskStatuses.plan,
+        importance: TaskImportanceCoefficient.Must,
+        date: new Date(),
+    },
+    {
+        id: 'TSK-006',
+        taskName: 'Порефачить reducer-ы',
+        assignee: {
+            id: 'id2',
+            firstName: 'Олег',
+            lastName: 'Канавин'
+        },
+        status: TaskStatuses.inProgress,
+        importance: TaskImportanceCoefficient.Should,
+        date: new Date(),
+    },
+    {
+        id: 'TSK-007',
+        taskName: 'Узнать что-то',
+        assignee: {
+            id: 'id2',
+            firstName: 'Петя',
+            lastName: 'Камушкин'
+        },
+        status: TaskStatuses.testing,
+        importance: TaskImportanceCoefficient.Could,
+        date: new Date(),
+    },
+    {
+        id: 'TSK-008',
+        taskName: 'Погулять',
+        assignee: {
+            id: 'id3',
+            firstName: 'Олег',
+            lastName: 'Канавин'
+        },
+        status: TaskStatuses.plan,
+        importance: TaskImportanceCoefficient.Must,
+        date: new Date(),
+    },
+    {
+        id: 'TSK-009',
+        taskName: 'Узнать что-то',
+        assignee: {
+            id: 'id3',
+            firstName: 'Олег',
+            lastName: 'Канавин'
+        },
+        status: TaskStatuses.testing,
+        importance: TaskImportanceCoefficient.Could,
+        date: new Date(),
+    },
+    {
+        id: 'TSK-010',
+        taskName: 'Потанцевать с бубном',
+        assignee: {
+            id: 'id4',
+            firstName: 'Андрей',
+            lastName: 'Туннелин'
+        },
         status: TaskStatuses.done,
-        importance: 0,
-    }
+        importance: TaskImportanceCoefficient.Could,
+        date: new Date(),
+    },
+    {
+        id: 'TSK-011',
+        taskName: 'Сделать что-то невероятное',
+        assignee: {
+            id: 'id4',
+            firstName: 'Андрей',
+            lastName: 'Туннелин'
+        },
+        status: TaskStatuses.plan,
+        importance: TaskImportanceCoefficient.Must,
+        date: new Date(),
+    },
+    {
+        id: 'TSK-012',
+        taskName: 'Узнать что-то',
+        assignee: {
+            id: 'id4',
+            firstName: 'Андрей',
+            lastName: 'Туннелин'
+        },
+        status: TaskStatuses.inProgress,
+        importance: TaskImportanceCoefficient.Should,
+        date: new Date(),
+    },
 ];
