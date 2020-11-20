@@ -18,4 +18,5 @@ export type TaskInfo = {
     assignee: AssigneeInfo;
     status: TaskStatus;
     importance: TaskImportanceCoefficient;
+    date: Date;
 }

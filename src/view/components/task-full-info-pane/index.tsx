@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react';
 import { createCn } from 'bem-react-classname';
-
 import { VscChromeClose } from 'react-icons/vsc';
 
 import TaskInfoField from '../ui/task-info-field';
@@ -8,6 +7,8 @@ import TaskInfoField from '../ui/task-info-field';
 import { TaskInfo } from '../../../types/tasks';
 
 import { TaskImportanceNameByCoefficient, TaskStatusTitles } from '../../../constants/tasks';
+
+import { formatDate } from '../../../utils/date';
 
 import './styles.scss';
 
@@ -29,7 +30,7 @@ const TaskFullInfoPane: React.FC<Props> = ({ taskInfo, onCloseButtonClick, class
                 <TaskInfoField fieldName='Assignee' fieldValue={ `${taskInfo?.assignee.lastName} ${taskInfo?.assignee.firstName}` } />
                 <TaskInfoField fieldName='Importance' fieldValue={ TaskImportanceNameByCoefficient[taskInfo?.importance] } />
                 <TaskInfoField fieldName='Status' fieldValue={ TaskStatusTitles[taskInfo?.status] } />
-                <TaskInfoField fieldName='Date' fieldValue={ 'дата' } />
+                <TaskInfoField fieldName='Date' fieldValue={ formatDate(taskInfo.date) } />
             </div>
         </div>
     );
