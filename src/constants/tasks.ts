@@ -172,4 +172,40 @@ export const TASKS: Array<TaskInfo> = [
         importance: TaskImportanceCoefficient.Should,
         date: new Date(),
     },
+    {
+        id: "TSK-013",
+        taskName: "Вырастить дерево",
+        assignee: {
+            id: "id5",
+            firstName: "Кандрон",
+            lastName: "Архангельский",
+        },
+        status: TaskStatuses.plan,
+        importance: TaskImportanceCoefficient.Could,
+        date: new Date(),
+    },
+    {
+        id: "TSK-014",
+        taskName: "Удалить код",
+        assignee: {
+            id: "id5",
+            firstName: "Кандрон",
+            lastName: "Архангельский",
+        },
+        status: TaskStatuses.done,
+        importance: TaskImportanceCoefficient.Could,
+        date: new Date(),
+    },
+    {
+        id: "TSK-015",
+        taskName: "Построить дом",
+        assignee: {
+            id: "id5",
+            firstName: "Кандрон",
+            lastName: "Архангельский",
+        },
+        status: TaskStatuses.inProgress,
+        importance: TaskImportanceCoefficient.Could,
+        date: new Date(),
+    },
 ];

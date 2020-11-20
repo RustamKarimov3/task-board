@@ -11,7 +11,7 @@ import {
     TaskStatusTitles,
 } from "../../../constants/tasks";
 
-import { formatDate } from "../../../utils/date";
+import { formatDate, formatAssigneeName } from "../../../utils/formatters";
 
 import "./styles.scss";
 
@@ -45,7 +45,7 @@ const TaskFullInfoPane: React.FC<Props> = ({
                 <TaskInfoField fieldName="Task-id" fieldValue={taskInfo?.id} />
                 <TaskInfoField
                     fieldName="Assignee"
-                    fieldValue={`${taskInfo?.assignee.lastName} ${taskInfo?.assignee.firstName}`}
+                    fieldValue={formatAssigneeName(taskInfo?.assignee)}
                 />
                 <TaskInfoField
                     fieldName="Importance"

@@ -3,10 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { createCn } from "bem-react-classname";
 
 import TaskPane from "../ui/task-pane";
+import Label from "../ui/label";
 
 import { TaskInfo } from "../../../types/tasks";
 
 import { sortTasksByImportance } from "../../../utils/tasks";
+import { formatAssigneeName } from "../../../utils/formatters";
 
 import { selectChosenTaskId } from "../../../redux/store/chosen-task-id/selectors";
 import { setChosenTaskId } from "../../../redux/store/chosen-task-id/action-creators";
@@ -47,7 +49,12 @@ const TaskPaneGroup: React.FC<Props> = ({ taskGroup }) => {
     );
 
     return (
-        <div className={cn()}>{tasksSortedByImportance.map(renderTask)}</div>
+        <div className={cn()}>
+            <Label className={cn("assignee-name")}>
+                {formatAssigneeName(taskGroup[0].assignee)}
+            </Label>
+            {tasksSortedByImportance.map(renderTask)}
+        </div>
     );
 };
 

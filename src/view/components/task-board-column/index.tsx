@@ -55,6 +55,10 @@ const TaskBoardColumn: React.FC<Props> = ({ status, className }) => {
         [tasksByStatus]
     );
 
+    const assigneeIds = useMemo(() => Object.keys(tasksGroupedByAssigneeId), [
+        tasksGroupedByAssigneeId,
+    ]);
+
     const renderTaskGroupByAssignId = useCallback(
         (assigneeId: string) =>
             tasksGroupedByAssigneeId[assigneeId] && (
@@ -65,10 +69,6 @@ const TaskBoardColumn: React.FC<Props> = ({ status, className }) => {
             ),
         [tasksGroupedByAssigneeId]
     );
-
-    const assigneeIds = useMemo(() => Object.keys(tasksGroupedByAssigneeId), [
-        tasksGroupedByAssigneeId,
-    ]);
 
     return (
         <div className={cn({ highlited })} ref={drop}>
