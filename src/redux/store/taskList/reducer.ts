@@ -1,4 +1,4 @@
-import { cloneDeep } from "lodash";
+import cloneDeep from "lodash/cloneDeep";
 import { TASKS } from "../../../constants/tasks";
 
 import { InferValueTypes } from "../../../types/common";
