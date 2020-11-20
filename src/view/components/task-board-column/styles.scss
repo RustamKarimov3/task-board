@@ -16,5 +16,7 @@
 
     &__title {
         padding-bottom: $gap-s;
+        box-shadow: $shadow-accent-bottom;
+        margin-bottom: $gap-xs;
     }
 }

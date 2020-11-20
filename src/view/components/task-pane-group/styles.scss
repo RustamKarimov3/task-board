@@ -1,6 +1,11 @@
 @import "../../../vars.scss";
 
 .task-pane-group {
+    &__assignee-name {
+        color: $font-color-minor;
+        margin: $gap-m 0 $gap-2xs;
+    }
+
     &__task {
         margin-bottom: $gap-s;
     }
