@@ -1,4 +1,4 @@
-export type TaskStatus = 'plan' | 'inProgress' | 'testing' | 'done';
+export type TaskStatus = "plan" | "inProgress" | "testing" | "done";
 
 export enum TaskImportanceCoefficient {
     Could = 0,
@@ -10,7 +10,7 @@ export type AssigneeInfo = {
     id: string;
     firstName: string;
     lastName: string;
-}
+};
 
 export type TaskInfo = {
     id: string;
@@ -19,4 +19,9 @@ export type TaskInfo = {
     status: TaskStatus;
     importance: TaskImportanceCoefficient;
     date: Date;
-}
+};
+
+export type TaskInfosGroupedByAssigneeId = Record<
+    AssigneeInfo["id"],
+    TaskInfo[]
+>;
